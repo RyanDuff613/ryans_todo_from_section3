@@ -20,9 +20,11 @@
     - `$ git commit -m "add .gitignore"` 
 6. Navigate to project directory
     - `$ cd TodoList` 
-7. Create configuration files: 
-    - `$ touch Program.cs ToDoList.csproj appsettings.json`
-8. Add required content to these files.
+7. Create required directories: 
+    - `$ mkdir Controllers Models Properties Views wwwroot`
+8. Create configuration files: 
+    - `$ touch Program.cs ToDoList.csproj appsettings.json Properties/launchSettings.json`
+9. Add required content to these files.
 
       <details><summary><code>ToDoList/ToDoList.csproj</code></summary> 
 
@@ -34,8 +36,8 @@
         </PropertyGroup>
 
         <ItemGroup>
-          <PackageReference Include="Microsoft. EntityFrameworkCore" Version="6.    0.0" />
-          <PackageReference Include="Pomelo.  EntityFrameworkCore.MySql"    Version="6.0.0" />
+          <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+          <PackageReference Include="Pomelo.EntityFrameworkCore.MySql"Version="6.0.0" />
         </ItemGroup>
 
       </Project>
@@ -99,10 +101,36 @@
       ```
       </details>
 
-9. Optional but its a good idea to test your configuration at this point with: 
+      <details><summary><code>ToDoList/Properties/launchSettings.json</code></summary> 
+
+      ```json
+      {
+          "profiles": {
+            "development": {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "applicationUrl": "https://localhost:5001;http://localhost:5000",
+            "environmentVariables": {
+              "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+          },
+          "production": {
+             "commandName": "Project",
+             "dotnetRunMessages": true,
+             "launchBrowser": true,
+             "applicationUrl": "https://localhost:5001;http://localhost:5000",
+             "environmentVariables": {
+               "ASPNETCORE_ENVIRONMENT": "Production"
+             }
+           }
+         }
+      }
+      ```
+      </details>
+
+10. Optional but its a good idea to test your configuration at this point with: 
     - `$ dotnet build`
-10. Create required directories: 
-    - `$ mkdir Controllers Models Properties Views wwwroot`
 11. Build Models
     -  Model Naming Conventions for EF Core:
         - Column names in DB must match property names of Models in the app. These are case-sensitive.
@@ -217,7 +245,7 @@
       </details>
 
     - Our views use the `SelectList` passed down from the controller to create a dropdown selection.  
-       <details><summary><code>ToDoList/Views/Create.cs</code></summary> 
+       <details><summary><code>ToDoList/Views/Create.cshtml</code></summary> 
 
       ```c#
       @{
